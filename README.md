@@ -1,6 +1,6 @@
 # AI-Powered Note Taking App
 
-A beautiful, modern note-taking application built with Next.js 15, featuring advanced AI capabilities powered by OpenAI. Create, organize, and enhance your notes with intelligent features like auto-completion, summarization, and AI-powered chat.
+A beautiful, modern note-taking application built with Next.js 15, featuring advanced AI capabilities powered by Google Gemini. Create, organize, and enhance your notes with intelligent features like auto-completion, summarization, and AI-powered chat.
 
 ## Features
 
@@ -37,7 +37,7 @@ A beautiful, modern note-taking application built with Next.js 15, featuring adv
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS + shadcn/ui components
 - **Rich Text Editor**: Tiptap
-- **AI**: OpenAI API (GPT-4o-mini)
+- **AI**: Google Gemini API (Gemini 1.5 Flash)
 - **Database**: SQLite with Prisma ORM (ready to use)
 - **Icons**: Lucide React
 
@@ -47,7 +47,7 @@ A beautiful, modern note-taking application built with Next.js 15, featuring adv
 
 - Node.js 18+ installed
 - npm or yarn package manager
-- OpenAI API key (for AI features)
+- Google Gemini API key (for AI features)
 
 ### Installation
 
@@ -63,11 +63,12 @@ npm install
 ```
 
 3. Set up environment variables:
-   - Copy the `.env` file and add your OpenAI API key:
+   - Add your Google Gemini API key to the `.env` file:
+   - Get your API key at: https://makersuite.google.com/app/apikey
 ```bash
 # .env
 DATABASE_URL="file:./dev.db"
-OPENAI_API_KEY="your-openai-api-key-here"
+GOOGLE_API_KEY="your-google-api-key-here"
 ```
 
 4. Generate Prisma client (if not already generated):
@@ -160,7 +161,7 @@ model Note {
 During development, the app uses an in-memory mock database (`lib/mock-db.ts`) that can be easily replaced with the Prisma client once the database engines are available.
 
 ### AI Configuration
-- All AI features use OpenAI's GPT-4o-mini model for cost-efficiency
+- All AI features use Google's Gemini 1.5 Flash model for fast, cost-effective responses
 - Temperature and token limits are optimized for each use case
 - Error handling is in place for when API keys are not configured
 
@@ -176,7 +177,7 @@ npm start
 | Variable | Description | Required |
 |----------|-------------|----------|
 | `DATABASE_URL` | SQLite database URL | Yes |
-| `OPENAI_API_KEY` | OpenAI API key for AI features | Yes (for AI features) |
+| `GOOGLE_API_KEY` | Google Gemini API key for AI features | Yes (for AI features) |
 
 ## Future Enhancements
 
@@ -204,4 +205,4 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 - Built with [Next.js](https://nextjs.org/)
 - UI components from [shadcn/ui](https://ui.shadcn.com/)
 - Rich text editing by [Tiptap](https://tiptap.dev/)
-- AI powered by [OpenAI](https://openai.com/)
+- AI powered by [Google Gemini](https://ai.google.dev/)

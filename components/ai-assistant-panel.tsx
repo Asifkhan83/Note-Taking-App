@@ -45,7 +45,7 @@ export function AIAssistantPanel() {
           ...prev,
           {
             role: "assistant",
-            content: error.error || "Sorry, I encountered an error. Please make sure you've added your OpenAI API key to the .env file.",
+            content: error.error || "Sorry, I encountered an error. Please make sure you've added your Google API key to the .env file.",
           },
         ]);
       }
