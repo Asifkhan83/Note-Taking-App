@@ -39,3 +39,5 @@ next-env.d.ts
 # prisma
 prisma/dev.db
 prisma/dev.db-journal
+# Keep migrations in git for production deployment
+# !prisma/migrations

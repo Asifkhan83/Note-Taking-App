@@ -198,7 +198,22 @@ During development, the app uses an in-memory mock database (`lib/mock-db.ts`) t
 - See [SECURITY.md](SECURITY.md) for detailed security guidelines
 - **Never** commit your `.env` file or expose API keys in client-side code
 
-## Building for Production
+## Deployment
+
+### Deploy to Vercel with Supabase
+
+For complete deployment instructions to production, see **[DEPLOYMENT.md](DEPLOYMENT.md)**
+
+Quick overview:
+1. **Set up Supabase** - Create PostgreSQL database
+2. **Deploy to Vercel** - One-click deployment
+3. **Configure environment variables** - Add secrets
+4. **Initialize database** - Run migrations
+5. **Go live!** - Your app is ready
+
+See the [deployment guide](DEPLOYMENT.md) for detailed step-by-step instructions.
+
+## Building for Production (Local)
 
 ```bash
 npm run build
