@@ -5,6 +5,11 @@ A beautiful, modern note-taking application built with Next.js 15, featuring adv
 ## Features
 
 ### Core Functionality
+- **Password Protection**: Secure login system to protect your notes
+  - JWT-based session management
+  - 7-day persistent sessions
+  - Secure logout functionality
+
 - **Rich Text Editor**: Powered by Tiptap with full formatting support
   - Headings, lists, quotes, code blocks
   - Task lists with checkboxes
@@ -67,12 +72,19 @@ npm install
    ```bash
    cp .env.example .env
    ```
-   - Get your Google Gemini API key at: https://makersuite.google.com/app/apikey
-   - Add your API key to the `.env` file:
+   - Configure your credentials in the `.env` file:
    ```bash
    # .env
    DATABASE_URL="file:./dev.db"
+
+   # Get your Google Gemini API key at: https://makersuite.google.com/app/apikey
    GOOGLE_API_KEY="your-google-api-key-here"
+
+   # Set your app password (change to your own secure password)
+   APP_PASSWORD="your-secure-password-here"
+
+   # Generate a random JWT secret (min 32 characters)
+   JWT_SECRET="your-random-jwt-secret-here"
    ```
    - **Important**: Never commit the `.env` file to version control
 
@@ -89,7 +101,17 @@ npm run dev
 
 6. Open [http://localhost:3000](http://localhost:3000) in your browser
 
+7. Login with your password:
+   - You'll be redirected to the login page
+   - Enter the password you set in `APP_PASSWORD`
+   - Your session will remain active for 7 days
+
 ## Usage
+
+### Authentication
+- **Login**: Enter your password on the login page
+- **Logout**: Click the logout icon in the sidebar header
+- **Session**: Automatically stays logged in for 7 days
 
 ### Creating Notes
 1. Click the "New" button in the sidebar
@@ -189,6 +211,8 @@ npm start
 |----------|-------------|----------|
 | `DATABASE_URL` | SQLite database URL | Yes |
 | `GOOGLE_API_KEY` | Google Gemini API key for AI features | Yes (for AI features) |
+| `APP_PASSWORD` | Password to access the application | Yes |
+| `JWT_SECRET` | Secret key for JWT session encryption (min 32 chars) | Yes |
 
 **Security Note**:
 - Use `.env.example` as a template

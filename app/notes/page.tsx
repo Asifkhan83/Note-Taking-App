@@ -20,6 +20,7 @@ import {
   FileText,
   Wand2,
   Loader2,
+  LogOut,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -175,6 +176,15 @@ export default function NotesPage() {
     }
   };
 
+  const handleLogout = async () => {
+    try {
+      await fetch("/api/auth/logout", { method: "POST" });
+      window.location.href = "/login";
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
+
   const filteredNotes = notes.filter(
     (note) =>
       note.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -192,10 +202,20 @@ export default function NotesPage() {
               <Sparkles className="h-5 w-5 text-primary" />
               AI Notes
             </h1>
-            <Button size="sm" onClick={createNote}>
-              <Plus className="h-4 w-4 mr-1" />
-              New
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button size="sm" onClick={createNote}>
+                <Plus className="h-4 w-4 mr-1" />
+                New
+              </Button>
+              <Button
+                size="sm"
+                variant="ghost"
+                onClick={handleLogout}
+                title="Logout"
+              >
+                <LogOut className="h-4 w-4" />
+              </Button>
+            </div>
           </div>
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />

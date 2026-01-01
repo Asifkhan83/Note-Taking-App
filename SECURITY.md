@@ -1,5 +1,30 @@
 # Security Policy
 
+## Application Security
+
+This application implements multiple layers of security to protect your data:
+
+### Authentication & Access Control
+
+1. **Password Protection**
+   - The app requires authentication to access notes
+   - Password is stored in environment variables (not in database)
+   - JWT-based session management with 7-day expiration
+   - HttpOnly cookies prevent XSS attacks
+   - Middleware protects all sensitive routes
+
+2. **Session Security**
+   - Secure session tokens using JWT (JSON Web Tokens)
+   - Sessions encrypted with a strong secret key
+   - Automatic session expiration after 7 days
+   - Server-side session validation
+
+3. **Best Practices for Passwords**
+   - Use a strong, unique password for `APP_PASSWORD`
+   - Minimum 12 characters recommended
+   - Include uppercase, lowercase, numbers, and symbols
+   - Never share your password or commit it to version control
+
 ## Protecting Your API Keys
 
 This application uses sensitive API keys that must be protected. Follow these security best practices:
@@ -51,6 +76,13 @@ Your API key is configured with professional security measures:
 
 ### Deployment Security Checklist
 
+Authentication & Sessions:
+- [ ] Strong `APP_PASSWORD` configured (12+ characters)
+- [ ] Unique `JWT_SECRET` generated (32+ random characters)
+- [ ] Sessions use secure cookies in production (HTTPS)
+- [ ] Password not shared or committed to version control
+
+API Keys & Credentials:
 - [ ] `.env` is in `.gitignore`
 - [ ] API keys are set in hosting platform's environment variables
 - [ ] API key restrictions are configured in Google AI Studio
