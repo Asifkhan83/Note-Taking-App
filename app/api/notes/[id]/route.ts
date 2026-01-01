@@ -1,0 +1,76 @@
+import { NextRequest, NextResponse } from "next/server";
+import { mockDb } from "@/lib/mock-db";
+
+// GET /api/notes/[id] - Get a specific note
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const { id } = await params;
+    const note = await mockDb.note.findUnique({ where: { id } });
+
+    if (!note) {
+      return NextResponse.json({ error: "Note not found" }, { status: 404 });
+    }
+
+    return NextResponse.json(note);
+  } catch (error) {
+    console.error("Failed to fetch note:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch note" },
+      { status: 500 }
+    );
+  }
+}
+
+// PATCH /api/notes/[id] - Update a note
+export async function PATCH(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const { id } = await params;
+    const body = await request.json();
+
+    const note = await mockDb.note.update({
+      where: { id },
+      data: body,
+    });
+
+    if (!note) {
+      return NextResponse.json({ error: "Note not found" }, { status: 404 });
+    }
+
+    return NextResponse.json(note);
+  } catch (error) {
+    console.error("Failed to update note:", error);
+    return NextResponse.json(
+      { error: "Failed to update note" },
+      { status: 500 }
+    );
+  }
+}
+
+// DELETE /api/notes/[id] - Delete a note
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const { id } = await params;
+    const note = await mockDb.note.delete({ where: { id } });
+
+    if (!note) {
+      return NextResponse.json({ error: "Note not found" }, { status: 404 });
+    }
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("Failed to delete note:", error);
+    return NextResponse.json(
+      { error: "Failed to delete note" },
+      { status: 500 }
+    );
+  }
+}
