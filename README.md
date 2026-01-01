@@ -63,13 +63,18 @@ npm install
 ```
 
 3. Set up environment variables:
-   - Add your Google Gemini API key to the `.env` file:
-   - Get your API key at: https://makersuite.google.com/app/apikey
-```bash
-# .env
-DATABASE_URL="file:./dev.db"
-GOOGLE_API_KEY="your-google-api-key-here"
-```
+   - Copy `.env.example` to `.env`:
+   ```bash
+   cp .env.example .env
+   ```
+   - Get your Google Gemini API key at: https://makersuite.google.com/app/apikey
+   - Add your API key to the `.env` file:
+   ```bash
+   # .env
+   DATABASE_URL="file:./dev.db"
+   GOOGLE_API_KEY="your-google-api-key-here"
+   ```
+   - **Important**: Never commit the `.env` file to version control
 
 4. Generate Prisma client (if not already generated):
 ```bash
@@ -165,6 +170,12 @@ During development, the app uses an in-memory mock database (`lib/mock-db.ts`) t
 - Temperature and token limits are optimized for each use case
 - Error handling is in place for when API keys are not configured
 
+### Security Best Practices
+- API keys are stored in `.env` file which is excluded from version control
+- All AI operations run on the server-side only
+- See [SECURITY.md](SECURITY.md) for detailed security guidelines
+- **Never** commit your `.env` file or expose API keys in client-side code
+
 ## Building for Production
 
 ```bash
@@ -178,6 +189,13 @@ npm start
 |----------|-------------|----------|
 | `DATABASE_URL` | SQLite database URL | Yes |
 | `GOOGLE_API_KEY` | Google Gemini API key for AI features | Yes (for AI features) |
+
+**Security Note**:
+- Use `.env.example` as a template
+- Never commit `.env` file to version control
+- Set up API key restrictions in Google AI Studio
+- Use different keys for development and production
+- See [SECURITY.md](SECURITY.md) for complete security guidelines
 
 ## Future Enhancements
 
